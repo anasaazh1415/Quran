@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>القرآن الكريم</title>
+    <link rel="stylesheet" href="surah-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <div class="top-nav">
+            <a href="index.html" class="back-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                العودة للسور
+            </a>
+            
+            <div class="nav-buttons">
+                <button id="prevSurah" class="nav-btn" style="display: none;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <button id="nextSurah" class="nav-btn" style="display: none;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Surah Header -->
+        <div class="surah-header" id="surahHeader">
+            <div class="header-number" id="headerNumber"></div>
+            <h1 class="header-title" id="headerTitle"></h1>
+            <p class="header-subtitle" id="headerSubtitle"></p>
+            <div class="header-meta" id="headerMeta"></div>
+        </div>
+
+        <!-- Bismillah -->
+        <div class="bismillah" id="bismillah" style="display: none;">
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>جارٍ تحميل السورة...</p>
+        </div>
+
+        <!-- Error -->
+        <div class="error" id="error" style="display: none;">
+            <p id="errorMessage"></p>
+            <button onclick="location.reload()" class="retry-button">إعادة المحاولة</button>
+        </div>
+
+        <!-- Verses Container -->
+        <div class="verses-container" id="versesContainer" style="display: none;">
+            <div class="verses-content" id="versesContent"></div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav" id="bottomNav" style="display: none;">
+            <button id="prevSurahBottom" class="nav-button" style="display: none;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                <span id="prevSurahName"></span>
+            </button>
+            
+            <button id="nextSurahBottom" class="nav-button" style="display: none;">
+                <span id="nextSurahName"></span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="surah.js"></script>
+</body>
+</html>
