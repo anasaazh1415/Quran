@@ -320,3 +320,12 @@ body {
     }
 
 }
+
+
+.ayah {
+    text-align: justify;
+    text-justify: inter-word;
+    direction: rtl;
+    unicode-bidi: plaintext;
+}
+
