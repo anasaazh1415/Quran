@@ -354,7 +354,7 @@ body {
     }
 
     .surah-card {
-        padding-top: 3.5rem; /* مساحة لرقم السورة */
+        padding-top: 4rem; /* مساحة لرقم السورة */
         text-align: center;
     }
 
@@ -372,3 +372,4 @@ body {
         transform: translateX(-50%);
     }
 }
+
