@@ -156,6 +156,28 @@ function displaySurahs(surahsToDisplay) {
     });
 }
 
+function displayVerses(verses) {
+    const container = document.getElementById('versesContent');
+    let html = '';
+
+    verses.forEach((verse, index) => {
+        let text = verse.text;
+
+        // إزالة البسملة من أول آية فقط
+        if (index === 0 && text.includes("بسم الله الرحمن الرحيم")) {
+            text = text.replace("بسم الله الرحمن الرحيم", "").trim();
+        }
+
+        html += `
+            <span class="verse-text">${text}</span>
+            <span class="verse-number">${toArabicNumber(verse.numberInSurah)}</span>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+
 
 // البحث
 document.getElementById('searchInput').addEventListener('input', (e) => {
@@ -171,5 +193,6 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
 // عرض السور عند التحميل
 
 displaySurahs(surahs);
+
 
 
