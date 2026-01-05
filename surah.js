@@ -180,18 +180,24 @@ async function loadVerses() {
     }
 }
 
-// عرض الآيات
 function displayVerses(verses) {
     const container = document.getElementById('versesContent');
     let html = '';
-    
-    verses.forEach(verse => {
+
+    verses.forEach((verse, index) => {
+        let text = verse.text;
+
+        // إزالة البسملة من أول آية فقط إذا كانت موجودة
+        if (index === 0 && text.includes("بسم الله الرحمن الرحيم")) {
+            text = text.replace("بسم الله الرحمن الرحيم", "").trim();
+        }
+
         html += `
-            <span class="verse-text">${verse.text}</span>
+            <span class="verse-text">${text}</span>
             <span class="verse-number">${toArabicNumber(verse.numberInSurah)}</span>
         `;
     });
-    
+
     container.innerHTML = html;
 }
 
@@ -238,5 +244,6 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
