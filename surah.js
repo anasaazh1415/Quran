@@ -189,9 +189,10 @@ function displayVerses(verses) {
 
         // إزالة البسملة من أول آية نهائيًا
         if (index === 0 && surahNumber !== 9) { // التوبة لا تحتوي بسملة
-            // إذا كانت البسملة في بداية النص
-            if (text.startsWith("بسم الله الرحمن الرحيم")) {
-                text = text.replace(/^بسم الله الرحمن الرحيم\s*/, '');
+            // إذا كانت الآية تبدأ بالبسملة
+            const bismillah = "بسم الله الرحمن الرحيم";
+            if (text.startsWith(bismillah)) {
+                text = text.slice(bismillah.length).trim();
             }
         }
 
@@ -203,7 +204,6 @@ function displayVerses(verses) {
 
     container.innerHTML = html;
 }
-
 
 // عرض رسالة خطأ
 function showError(message) {
@@ -247,6 +247,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
