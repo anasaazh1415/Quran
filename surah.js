@@ -184,15 +184,15 @@ function displayVerses(verses) {
     const container = document.getElementById('versesContent');
     let html = '';
 
+    // إزالة البسملة من أول آية إذا كانت موجودة
+    const bismillah = "بسم الله الرحمن الرحيم";
+
     verses.forEach((verse, index) => {
         let text = verse.text;
 
-        // إزالة البسملة من أول آية نهائيًا
         if (index === 0 && surahNumber !== 9) { // التوبة لا تحتوي بسملة
-            // إذا كانت الآية تبدأ بالبسملة
-            const bismillah = "بسم الله الرحمن الرحيم";
             if (text.startsWith(bismillah)) {
-                text = text.slice(bismillah.length).trim();
+                text = text.replace(bismillah, '').trim();
             }
         }
 
@@ -203,6 +203,12 @@ function displayVerses(verses) {
     });
 
     container.innerHTML = html;
+
+    // عرض البسملة فقط في العنصر المخصص
+    if (surahNumber !== 9) {
+        document.getElementById('bismillah').textContent = bismillah;
+        document.getElementById('bismillah').style.display = 'block';
+    }
 }
 
 // عرض رسالة خطأ
@@ -247,6 +253,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
