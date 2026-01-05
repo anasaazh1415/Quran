@@ -195,6 +195,29 @@ function displayVerses(verses) {
     container.innerHTML = html;
 }
 
+function displayVerses(verses) {
+    const container = document.getElementById('versesContent');
+    let html = '';
+
+    verses.forEach((verse, index) => {
+        let text = verse.text;
+
+        // إزالة البسملة من الآية نفسها
+        if (text.startsWith("بسم الله الرحمن الرحيم")) {
+            text = text.replace("بسم الله الرحمن الرحيم", "").trim();
+        }
+
+        html += `
+            <span class="verse-text">${text}</span>
+            <span class="verse-number">${toArabicNumber(verse.numberInSurah)}</span>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+
+
 // عرض رسالة خطأ
 function showError(message) {
     document.getElementById('loading').style.display = 'none';
@@ -235,4 +258,5 @@ function goToSurah(number) {
 
 // تشغيل التطبيق
 displaySurahHeader();
+
 loadVerses();
