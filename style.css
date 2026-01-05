@@ -346,25 +346,20 @@ body {
         grid-template-columns: 1fr;
     }
 
-
-
-/* تبرير نص القرآن */
-.surah-content p, 
-.surah-content .ayah {
-    text-align: justify;        /* تبرير النص يمين ويسار */
-    text-align-last: center;    /* آخر سطر يكون متوسّط */
-    line-height: 2.2;           /* ارتفاع السطر لراحة العين */
-    font-family: 'Amiri', serif; /* خط عربي جميل للقرآن */
-    font-size: 22px;            /* حجم الخط */
-    word-break: break-word;     /* لف الكلمات الطويلة */
-    margin-bottom: 1rem;        /* مسافة بين الآيات */
+.verses-content {
+    text-align: justify; /* جعل النص مبرر على الكمبيوتر */
+    line-height: 3.5rem;
+    font-family: 'Amiri', serif;
+    font-size: 1.75rem;
+    color: #064e3b;
+    text-justify: inter-word; /* تحسين التبرير بين الكلمات */
 }
 
 /* للجوال */
 @media (max-width: 768px) {
-    .surah-content p, 
-    .surah-content .ayah {
-        text-align: justify;
-        text-align-last: center;
+    .verses-content {
+        text-align: center; /* الآيات وسط على الجوال */
+        font-size: 1.5rem;
+        line-height: 3rem;
     }
 }
