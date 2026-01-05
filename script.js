@@ -171,31 +171,3 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
 // عرض السور عند التحميل
 
 displaySurahs(surahs);
-
-
-
-function displayVerses(verses) {
-    const container = document.getElementById('versesContent');
-    let html = '';
-
-    verses.forEach((verse, index) => {
-        let text = verse.text;
-
-        // إزالة البسملة من أول آية نهائيًا
-        if (index === 0 && surahNumber !== 9) { // التوبة لا تحتوي بسملة
-            // إذا كانت البسملة في بداية النص
-            if (text.startsWith("بسم الله الرحمن الرحيم")) {
-                text = text.replace(/^بسم الله الرحمن الرحيم\s*/, '');
-            }
-        }
-
-        html += `
-            <span class="verse-text">${text}</span>
-            <span class="verse-number">${toArabicNumber(verse.numberInSurah)}</span>
-        `;
-    });
-
-    container.innerHTML = html;
-}
-
-
