@@ -345,4 +345,27 @@ body {
     .surahs-grid {
         grid-template-columns: 1fr;
     }
+
+}
+
+@media (max-width: 768px) {
+
+    .header,
+    .title,
+    .subtitle {
+        text-align: center;
+    }
+
+    .surah-content {
+        text-align: center;
+    }
+
+    .surah-meta {
+        justify-content: center;
+    }
+
+    .surah-number {
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
