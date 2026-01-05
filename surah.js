@@ -185,7 +185,12 @@ function displayVerses(verses) {
     const container = document.getElementById('versesContent');
     let html = '';
     
-   
+    verses.forEach(verse => {
+        html += `
+            <span class="verse-text">${verse.text}</span>
+            <span class="verse-number">${toArabicNumber(verse.numberInSurah)}</span>
+        `;
+    });
     
     container.innerHTML = html;
 }
@@ -255,4 +260,5 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
