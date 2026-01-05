@@ -345,13 +345,16 @@ body {
     .surahs-grid {
         grid-template-columns: 1fr;
     }
-
-}
 @media (max-width: 768px) {
 
     .header,
     .title,
     .subtitle {
+        text-align: center;
+    }
+
+    .surah-card {
+        padding-top: 3.5rem; /* مساحة لرقم السورة */
         text-align: center;
     }
 
@@ -365,7 +368,7 @@ body {
 
     .surah-number {
         left: 50%;
+        top: 1rem;
         transform: translateX(-50%);
     }
 }
-
