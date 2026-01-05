@@ -345,3 +345,26 @@ body {
     .surahs-grid {
         grid-template-columns: 1fr;
     }
+
+
+
+/* تبرير نص القرآن */
+.surah-content p, 
+.surah-content .ayah {
+    text-align: justify;        /* تبرير النص يمين ويسار */
+    text-align-last: center;    /* آخر سطر يكون متوسّط */
+    line-height: 2.2;           /* ارتفاع السطر لراحة العين */
+    font-family: 'Amiri', serif; /* خط عربي جميل للقرآن */
+    font-size: 22px;            /* حجم الخط */
+    word-break: break-word;     /* لف الكلمات الطويلة */
+    margin-bottom: 1rem;        /* مسافة بين الآيات */
+}
+
+/* للجوال */
+@media (max-width: 768px) {
+    .surah-content p, 
+    .surah-content .ayah {
+        text-align: justify;
+        text-align-last: center;
+    }
+}
