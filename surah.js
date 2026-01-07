@@ -163,14 +163,14 @@ function showBismillah() {
 
 
 
-// تحميل الآيات
+// تحميل الآيات من API جديد (Sutanlab)
 async function loadVerses() {
     try {
-        const response = await fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}`);
-        const data = await response.json();
-        
-        if (data.code === 200) {
-            displayVerses(data.data.ayahs);
+        const response = await fetch(`https://api.quran.sutanlab.id/surah/${surahNumber}`);
+        const result = await response.json();
+
+        if (result.code === 200) {
+            displayVerses(result.data.verses);
             document.getElementById('loading').style.display = 'none';
             document.getElementById('versesContainer').style.display = 'block';
             showBismillah();
@@ -182,42 +182,29 @@ async function loadVerses() {
         showError('حدث خطأ في الاتصال');
     }
 }
-;
 
-
-
-        
-
+// عرض الآيات
 function displayVerses(verses) {
     const container = document.getElementById('versesContent');
     let html = '';
 
-    // إزالة البسملة من أول آية إذا كانت موجودة
-    const bismillah = "بسم الله الرحمن الرحيم";
-
-    verses.forEach((verse, index) => {
-        let text = verse.text;
-
-        if (index === 0 && surahNumber !== 9) { // التوبة لا تحتوي بسملة
-            if (text.startsWith(bismillah)) {
-                text = text.replace(bismillah, '').trim();
-            }
-        }
-
+    verses.forEach((verse) => {
         html += `
-            <span class="verse-text">${text}</span>
-            <span class="verse-number">${toArabicNumber(verse.numberInSurah)}</span>
+            <span class="verse-text">${verse.text.arab}</span>
+            <span class="verse-number">${toArabicNumber(verse.number.inSurah)}</span>
         `;
     });
 
     container.innerHTML = html;
 
-    // عرض البسملة فقط في العنصر المخصص
+    // إظهار البسملة فقط في العنصر المخصص
     if (surahNumber !== 9) {
-        document.getElementById('bismillah').textContent = bismillah;
         document.getElementById('bismillah').style.display = 'block';
     }
 }
+
+
+
 
 // عرض رسالة خطأ
 function showError(message) {
@@ -261,6 +248,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
