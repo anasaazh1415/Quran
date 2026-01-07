@@ -164,9 +164,7 @@ function showBismillah() {
 
 
 // تحميل الآيات
-async function loadVerses() {
-    try {
-        const response = await fetch("https://api.quran.com/api/v4/verses/by_chapter/1")
+fetch("https://api.quran.com/api/v4/verses/by_chapter/1")
   .then(res => res.json())
   .then(data => {
     const container = document.getElementById("ayahs");
@@ -255,6 +253,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
