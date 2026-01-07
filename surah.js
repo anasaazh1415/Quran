@@ -163,37 +163,19 @@ function showBismillah() {
 
 
 
-// تحميل الآيات من API جديد (Sutanlab)
-async function loadVerses() {
-    try {
-        const response = await fetch(`https://api.quran.sutanlab.id/surah/${surahNumber}`);
-        const result = await response.json();
-
-        if (result.code === 200) {
-            displayVerses(result.data.verses);
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('versesContainer').style.display = 'block';
-            showBismillah();
-            setupNavigation();
-        } else {
-            showError('حدث خطأ في تحميل السورة');
-        }
-    } catch (error) {
-        showError('حدث خطأ في الاتصال');
-    }
-}
-
 async function loadVerses() {
     try {
         const response = await fetch(`https://api.aladhan.com/v1/surah/${surahNumber}`);
         const result = await response.json();
 
-        if (result.code === 200) {
+        console.log(result); // للتأكد من الاستجابة
+
+        if (result && result.data && result.data.ayahs) {
             displayVerses(result.data.ayahs);
+
             document.getElementById('loading').style.display = 'none';
             document.getElementById('versesContainer').style.display = 'block';
 
-            // البسملة (ما عدا التوبة)
             if (surahNumber !== 9) {
                 document.getElementById('bismillah').style.display = 'block';
             }
@@ -266,6 +248,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
