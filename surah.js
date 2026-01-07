@@ -183,25 +183,43 @@ async function loadVerses() {
     }
 }
 
-// عرض الآيات
+async function loadVerses() {
+    try {
+        const response = await fetch(`https://api.aladhan.com/v1/surah/${surahNumber}`);
+        const result = await response.json();
+
+        if (result.code === 200) {
+            displayVerses(result.data.ayahs);
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('versesContainer').style.display = 'block';
+
+            // البسملة (ما عدا التوبة)
+            if (surahNumber !== 9) {
+                document.getElementById('bismillah').style.display = 'block';
+            }
+        } else {
+            showError('حدث خطأ في تحميل السورة');
+        }
+    } catch (error) {
+        console.error(error);
+        showError('حدث خطأ في الاتصال');
+    }
+}
+
 function displayVerses(verses) {
     const container = document.getElementById('versesContent');
     let html = '';
 
     verses.forEach((verse) => {
         html += `
-            <span class="verse-text">${verse.text.arab}</span>
-            <span class="verse-number">${toArabicNumber(verse.number.inSurah)}</span>
+            <span class="verse-text">${verse.text}</span>
+            <span class="verse-number">${toArabicNumber(verse.numberInSurah)}</span>
         `;
     });
 
     container.innerHTML = html;
-
-    // إظهار البسملة فقط في العنصر المخصص
-    if (surahNumber !== 9) {
-        document.getElementById('bismillah').style.display = 'block';
-    }
 }
+
 
 
 
@@ -248,6 +266,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
