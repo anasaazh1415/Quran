@@ -164,17 +164,25 @@ function showBismillah() {
 
 
 // تحميل الآيات
-fetch("https://api.quran.com/api/v4/verses/by_chapter/1")
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById("ayahs");
-    container.innerHTML = "";
-
-    data.verses.forEach(ayah => {
-      container.innerHTML += <p>${ayah.text_uthmani}</p>;
-    });
-  })
-  .catch(err => console.error(err));
+async function loadVerses() {
+    try {
+        const response = await fetch(`https://api.alquran.cloud/v1/surah/${surahNumber}`);
+        const data = await response.json();
+        
+        if (data.code === 200) {
+            displayVerses(data.data.ayahs);
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('versesContainer').style.display = 'block';
+            showBismillah();
+            setupNavigation();
+        } else {
+            showError('حدث خطأ في تحميل السورة');
+        }
+    } catch (error) {
+        showError('حدث خطأ في الاتصال');
+    }
+}
+;
 
 
 
@@ -253,6 +261,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
