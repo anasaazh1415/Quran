@@ -166,19 +166,19 @@ function showBismillah() {
 async function loadVerses() {
     try {
         const response = await fetch(
-            `https://api.quran.com/api/v4/quran/verses/uthmani?chapter_number=${surahNumber}`
+            `https://api.alquran.cloud/v1/surah/${surahNumber}/ar`
         );
 
         const result = await response.json();
         console.log(result);
 
-        if (result && result.verses) {
-            displayVerses(result.verses);
+        if (result && result.data && result.data.ayahs) {
+            displayVerses(result.data.ayahs);
 
             document.getElementById('loading').style.display = 'none';
             document.getElementById('versesContainer').style.display = 'block';
 
-            // إظهار البسملة (ما عدا التوبة)
+            // البسملة خارج الآيات
             if (surahNumber !== 9) {
                 document.getElementById('bismillah').style.display = 'block';
             }
@@ -194,20 +194,17 @@ async function loadVerses() {
 
 function displayVerses(verses) {
     const container = document.getElementById('versesContent');
-    let html = '';
+    container.innerHTML = '';
 
     verses.forEach((verse) => {
-        html += `
-            <span class="verse-text">${verse.text_uthmani}</span>
+        container.innerHTML += `
+            <span class="verse-text">${verse.text}</span>
             <span class="verse-number">
-                ${toArabicNumber(verse.verse_number)}
+                ${toArabicNumber(verse.numberInSurah)}
             </span>
         `;
     });
-
-    container.innerHTML = html;
 }
-
 
 
 
@@ -254,6 +251,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
