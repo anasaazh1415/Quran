@@ -170,7 +170,6 @@ async function loadVerses() {
         );
 
         const result = await response.json();
-        console.log(result);
 
         if (result && result.data && result.data.ayahs) {
             displayVerses(result.data.ayahs);
@@ -178,32 +177,51 @@ async function loadVerses() {
             document.getElementById('loading').style.display = 'none';
             document.getElementById('versesContainer').style.display = 'block';
 
-            // البسملة خارج الآيات
+            // إظهار البسملة (عدا التوبة)
             if (surahNumber !== 9) {
                 document.getElementById('bismillah').style.display = 'block';
             }
+
+            setupNavigation();
         } else {
             showError('حدث خطأ في تحميل السورة');
         }
 
     } catch (error) {
-        console.error(error);
         showError('حدث خطأ في الاتصال');
     }
 }
+
 
 function displayVerses(verses) {
     const container = document.getElementById('versesContent');
     container.innerHTML = '';
 
-    verses.forEach((verse) => {
+    const bismillah = 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ';
+
+    verses.forEach((verse, index) => {
+        let text = verse.text;
+
+        // إزالة البسملة من أول آية (عدا سورة الفاتحة والتوبة)
+        if (index === 0 && surahNumber !== 1 && surahNumber !== 9) {
+            if (text.startsWith(bismillah)) {
+                text = text.replace(bismillah, '').trim();
+            }
+        }
+
         container.innerHTML += `
-            <span class="verse-text">${verse.text}</span>
+            <span class="verse-text">${text}</span>
             <span class="verse-number">
                 ${toArabicNumber(verse.numberInSurah)}
             </span>
         `;
     });
+
+    // عرض البسملة في العنصر المخصص (عدا التوبة)
+    if (surahNumber !== 9) {
+        document.getElementById('bismillah').textContent = bismillah;
+        document.getElementById('bismillah').style.display = 'block';
+    }
 }
 
 
@@ -251,6 +269,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
