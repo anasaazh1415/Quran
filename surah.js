@@ -163,7 +163,7 @@ function showBismillah() {
 // تحميل الآيات
 async function loadVerses() {
     try {
-        const response = await fetch(`https://api.quran.com/api/v4/verses/${surahNumber}`);
+        const response = await fetch(`https://api.quran.com/api/v4/verses/surah${surahNumber}`);
         const data = await response.json();
         
         if (data.code === 200) {
@@ -253,6 +253,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
