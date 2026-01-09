@@ -211,9 +211,10 @@ function displayVerses(verses) {
 
         container.innerHTML += `
     <span class="verse-text">${text}</span>
-    <span class="verse-number-text">
-        (${toArabicNumber(verse.numberInSurah)})
-    </span>
+<span class="verse-number-text">
+    (${verse.numberInSurah})
+</span>
+
 `;
 
     });
@@ -270,6 +271,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
