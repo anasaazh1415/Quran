@@ -210,11 +210,12 @@ function displayVerses(verses) {
         }
 
         container.innerHTML += `
-            <span class="verse-text">${text}</span>
-            <span class="verse-number">
-                ${toArabicNumber(verse.numberInSurah)}
-            </span>
-        `;
+    <span class="verse-text">${text}</span>
+    <span class="verse-number-text">
+        (${toArabicNumber(verse.numberInSurah)})
+    </span>
+`;
+
     });
 
     // عرض البسملة في العنصر المخصص (عدا التوبة)
@@ -269,6 +270,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
