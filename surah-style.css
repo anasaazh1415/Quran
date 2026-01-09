@@ -248,23 +248,7 @@ body {
     color: #047857;
 }
 
-.verse-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    margin: 0 0.5rem;
-    background: linear-gradient(135deg, #fbbf24, #f59e0b);
-    color: white;
-    border-radius: 50%;
-    font-size: 0.875rem;
-    font-weight: 700;
-    font-family: 'Cairo', sans-serif;
-    box-shadow: 0 10px 15px -3px rgba(251, 191, 36, 0.3);
-    vertical-align: middle;
 
-}
 
 .verse-number {
     display: none;
@@ -356,5 +340,6 @@ body {
         line-height: 3rem;
     }
 }
+
 
 
