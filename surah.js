@@ -122,10 +122,10 @@ const surahNumber = parseInt(urlParams.get('number')) || 1;
 const surahInfo = surahsInfo[surahNumber];
 
 // تحويل الأرقام للعربية
-function toArabicNumber(num) {
-    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-    return num.toString().split('').map(d => arabicNumbers[parseInt(d)]).join('');
-}
+
+
+
+
 
 // عرض معلومات السورة
 
@@ -271,6 +271,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
