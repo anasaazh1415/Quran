@@ -278,6 +278,7 @@ body {
     color: #047857;
     margin: 0rem;
     white-space: nowrap;
+    font-weight: bold;
 }
 
 
@@ -357,6 +358,7 @@ body {
         line-height: 3rem;
     }
 }
+
 
 
 
