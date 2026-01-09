@@ -123,6 +123,9 @@ const surahInfo = surahsInfo[surahNumber];
 
 // تحويل الأرقام للعربية
 
+function toArabicNumber(num) {
+    return num.toString().replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+}
 
 
 
@@ -271,6 +274,7 @@ function goToSurah(number) {
 displaySurahHeader();
 
 loadVerses();
+
 
 
 
